@@ -10,7 +10,9 @@ import { RegisterComponent } from './sessions/register/register.component';
 import { Error403Component } from './sessions/403.component';
 import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
+import { AdministracaoAvaliarComponent } from './administracao/avaliar/avaliar.component';
 import { AuthGuard } from '@core';
+
 
 const routes: Routes = [
   {
@@ -24,6 +26,9 @@ const routes: Routes = [
       { path: '403', component: Error403Component },
       { path: '404', component: Error404Component },
       { path: '500', component: Error500Component },
+      {path:'avaliar', component: AdministracaoAvaliarComponent },
+  { path: 'solicitacao', loadChildren: () => import('./solicitacao/solicitacao.module').then(m => m.SolicitacaoModule) }
+
     ],
   },
   {

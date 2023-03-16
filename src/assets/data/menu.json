@@ -33,6 +33,30 @@
         }
       ]
     }
-
+, {
+  "route": "/",
+  "name": "administracao",
+  "type": "sub",
+  "icon": "question_answer",
+  "children": [
+    {
+      "route": "avaliar",
+      "name": "avaliar",
+      "type": "link"
+    }
+  ]
+},{
+  "route": "solicitacao",
+  "name": "solicitacao",
+  "type": "sub",
+  "icon": "question_answer",
+  "children": [
+    {
+      "route": "nova",
+      "name": "nova",
+      "type": "link"
+    }
+  ]
+}
   ]
 }
