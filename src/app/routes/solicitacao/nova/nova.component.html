@@ -1,34 +1,23 @@
 <page-header></page-header>
 
-<p>
-  The dynamic forms are powered by
-  <a href="https://github.com/ngx-formly/ngx-formly" target="_blank">
-    <code>ngx-formly</code>
-  </a>.
-</p>
 
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Simple</mat-card-title>
+    <mat-card-title>Nova Solicitação</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+    <form [formGroup]="formSol" (ngSubmit)="submit3()">
+      <formly-form [form]="formSol" [fields]="fieldsSol" [model]="modelSol"></formly-form>
       <button mat-raised-button color="primary">Submit</button>
     </form>
   </mat-card-content>
 </mat-card>
 
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>Advanced Layout</mat-card-title>
-  </mat-card-header>
-
-  <mat-card-content>
-    <form [formGroup]="form2" (ngSubmit)="submit2()">
-      <formly-form [model]="model2" [fields]="fields2" [form]="form2"></formly-form>
-      <button mat-raised-button color="primary" [disabled]="!form2.valid">Submit</button>
-    </form>
-  </mat-card-content>
+  <mtx-grid
+    [columns]="columns"
+    [data]="lista">
+  </mtx-grid>
 </mat-card>
+<button mat-stroked-button (click)="updateList()">Update List</button>
