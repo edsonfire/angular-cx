@@ -85,14 +85,14 @@
 
   },
   "validations": {
-    "required": "Campo Obrigatório",
-    "minlength": "Deve ter no mínimo {{number}} caracteres",
+    "required": "This field is required",
+    "minlength": "Should have atleast {{number}} characters",
     "maxlength": "This value should be less than {{number}} characters",
     "min": "This value should be more than {{number}}",
     "max": "This value should be less than {{number}}",
     "exist": "The {{value}} has exists",
     "inconsistent": "Inconsistent with {{value}}",
-    "invalid_email": "email inválido"
+    "invalid_email": "Invalid email"
   },
   "paginator": {
     "items_per_page_label": "Items per page:",
@@ -128,7 +128,7 @@
   "edit_profile": "Edit profile",
   "logout": "Sair",
   "login": "Login",
-  "login_title": "Portal UST",
+  "login_title": "Welcome Back",
   "have_no_account": "Don't have an account",
   "create_one_account": "Click here to create one",
   "please_enter": "Please enter",

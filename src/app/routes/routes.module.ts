@@ -9,6 +9,12 @@ import { Error403Component } from './sessions/403.component';
 import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
 import { AdministracaoAvaliarComponent } from './administracao/avaliar/avaliar.component';
+import { MixChartComponent } from './dashboard/mix-chart/mix-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
+import { PieChartMesComponent } from './dashboard/pie-chart-mes/pie-chart-mes.component';
+import { PieChartAnoComponent } from './dashboard/pie-chart-ano/pie-chart-ano.component';
+import { DashTabelaSolicitacoesComponent } from './dashboard/dash-tabela-solicitacoes/dash-tabela-solicitacoes.component';
 
 
 
@@ -26,7 +32,7 @@ const COMPONENTS: any[] = [
 const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
-  imports: [SharedModule, RoutesRoutingModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
+  imports: [SharedModule, RoutesRoutingModule,  NgApexchartsModule],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, MixChartComponent, BarChartComponent, PieChartMesComponent, PieChartAnoComponent, DashTabelaSolicitacoesComponent],
 })
 export class RoutesModule {}

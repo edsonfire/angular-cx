@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '@core';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,4 +15,10 @@ export class SidebarComponent {
   @Input() toggleChecked = false;
 
   @Output() toggleCollapsed = new EventEmitter<void>();
+
+  constructor(private router: Router, private auth: AuthService) {}
+
+  logout() {
+    this.auth.logout().subscribe(() => this.router.navigateByUrl('/auth/login'));
+  }
 }

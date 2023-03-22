@@ -8,6 +8,9 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 })
 export class DashboardComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) {}
+  manga:string="";
+  ngOnInit() {
+this.manga="";
 
-  ngOnInit() {}
+  }
 }

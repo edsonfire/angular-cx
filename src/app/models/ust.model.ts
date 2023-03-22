@@ -1,9 +1,11 @@
+import { Complexidade } from "./complexidade.model";
+
 export class Ust {
 
   macrocelula?:string;
   celula?:string;
   atividade?:string;
-  complexidade?:string;
+  complexidade?:Complexidade;
   fatorp?:number;
   esforco?:number;
   simultaneidade?:number;

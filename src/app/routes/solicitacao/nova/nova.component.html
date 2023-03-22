@@ -1,5 +1,3 @@
-<page-header></page-header>
-
 
 <mat-card>
   <mat-card-header>
@@ -9,7 +7,7 @@
   <mat-card-content>
     <form [formGroup]="formSol" (ngSubmit)="submit3()">
       <formly-form [form]="formSol" [fields]="fieldsSol" [model]="modelSol"></formly-form>
-      <button mat-raised-button color="primary">Submit</button>
+      <button mat-raised-button color="primary">Incluir</button>
     </form>
   </mat-card-content>
 </mat-card>
@@ -18,6 +16,18 @@
   <mtx-grid
     [columns]="columns"
     [data]="lista">
+
   </mtx-grid>
 </mat-card>
-<button mat-stroked-button (click)="updateList()">Update List</button>
+
+<mat-card>
+  <div class="row" style="padding: 20px;">
+      <h3>Total Ust´s: {{totalUst}}</h3>
+  </div>
+  <div style="text-align: center;padding: 10px;;">
+    <button mat-raised-button color="accent">Limpar</button>
+    <button mat-raised-button color="primary">Salvar</button>
+    <button mat-raised-button color="warn">Enviar</button>
+  </div>
+
+</mat-card>

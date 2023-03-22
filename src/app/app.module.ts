@@ -25,6 +25,7 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
 import { LoginService } from '@core/authentication/login.service';
 import { FakeLoginService } from './fake-login.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxApexchartsModule } from 'ngx-apexcharts';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormlyConfigModule.forRoot(),
     NgxPermissionsModule.forRoot(),
     ToastrModule.forRoot(),
+    NgxApexchartsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

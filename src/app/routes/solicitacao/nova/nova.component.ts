@@ -6,6 +6,7 @@ import { MtxDialog } from '@ng-matero/extensions/dialog';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Complexidade } from 'app/models/complexidade.model';
 import { Ust } from 'app/models/ust.model';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -19,12 +20,12 @@ import { Subscription } from 'rxjs';
 export class SolicitacaoNovaComponent implements OnInit  {
 
 
-
+   totalUst:number=0;
   columns: MtxGridColumn[] = [
     { header:  'Macrocélula' , field: 'macrocelula' },
     { header:  'Célula' ,      field: 'celula'},
     { header:  'Atividade' , field: 'atividade'},
-    { header:  'Complexidade' , field: 'complexidade'},
+    { header:  'Complexidade' , field: 'complexidade.descricao'},
     { header:  'Fator Pond.' , field: 'fatorp'},
     { header:  'Esforço (hrs)' ,field: 'esforco'},
     { header:  'Simultaneidade' , field: 'simultaneidade'},
@@ -65,7 +66,10 @@ export class SolicitacaoNovaComponent implements OnInit  {
     'macrocelula':'Macr 1',
     'celula':'Célula 1',
     'atividade':'atv 1',
-    'complexidade':'Baixa',
+    'complexidade':{
+      'descricao':'Alta',
+      'fatorp':3
+    },
     'fatorp':1,
     'esforco':8,
     'simultaneidade':2,
@@ -76,6 +80,52 @@ export class SolicitacaoNovaComponent implements OnInit  {
   }];
 
 
+  complexidadeList: Complexidade[] =
+    [
+      {
+        descricao: 'Baixa',
+        fatorp: 1
+
+      },
+      {
+        descricao: 'Média',
+        fatorp: 1.84
+
+      },
+      {
+    descricao: 'Alta',
+    fatorp: 3.37
+
+  },{
+    descricao: 'Elevada',
+    fatorp: 4.11
+
+  }];
+
+  macrocelulas=[
+    {"descricao":"Rede"},
+    {"descricao":"Central de Atendimento e Monitoração"},
+    {"descricao":"Automação"}
+  ]
+
+
+  celulas=[
+    {"descricao":"Rede datacenter"},
+    {"descricao":"Adm. de serv. de rede"},
+    {"descricao":"Ger. de infra e mon. de datacenter"},
+    {"descricao":"Aut. de infra e serv. de datacenter"}
+  ]
+
+  atividades=[
+    {"descricao":"Acionar fornecedor"},
+    {"descricao":"Acompanhar fornec"},
+    {"descricao":"Ger. de infra e mon. de datacenter"},
+    {"descricao":"Aut. de infra e serv. de datacenter"},
+    {"descricao":"Verificar integridade"},
+    {"descricao":"Suporte/manutenção"},
+    {"descricao":"Documentação e Melhorias"}
+
+  ]
 
 
   cidades = [{
@@ -104,130 +154,11 @@ export class SolicitacaoNovaComponent implements OnInit  {
     "ano":"Abr/2023"
   }]
 
-  form = new FormGroup({});
-  model = { email: 'email@gmail.com' };
-  fields: FormlyFieldConfig[] = [
-    {
-      key: 'text',
-      type: 'input',
-      templateOptions: {
-        label: 'Text',
-        placeholder: 'Type here to see the other field become enabled...',
-        required: true,
-      },
-    },
-    {
-      key: 'text2',
-      type: 'input',
-      templateOptions: {
-        label: 'Hey!',
-        placeholder: 'This one is disabled if there is no text in the other input',
-      },
-      expressionProperties: {
-        'templateOptions.disabled': '!model.text',
-      },
-    },
-    {
-      key: 'email',
-      type: 'input',
-      templateOptions: {
-        label: 'Email address',
-        placeholder: 'Enter email',
-        required: true,
-      },
-    },
-  ];
-
-  // Advanced Layout
-  form2 = new FormGroup({});
-  model2 = {};
-  fields2: FormlyFieldConfig[] = [
-    {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
-        {
-          className: 'col-sm-6',
-          type: 'input',
-          key: 'firstName',
-          templateOptions: {
-            label: 'First Name',
-            required: true,
-          },
-        },
-        {
-          className: 'col-sm-6',
-          type: 'input',
-          key: 'lastName',
-          templateOptions: {
-            label: 'Last Name',
-            required: true,
-          },
-          expressionProperties: {
-            'templateOptions.disabled': '!model.firstName',
-          },
-        },
-      ],
-    },
-    {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
-        {
-          className: 'col-sm-6',
-          type: 'input',
-          key: 'street',
-          templateOptions: {
-            label: 'Street',
-          },
-        },
-        {
-          className: 'col-sm-3',
-          type: 'combobox',
-          key: 'cityId',
-          templateOptions: {
-            label: 'City',
-            options:this.cidades,
-            labelProp: 'name',
-            valueProp: 'id',
-            required: true,
-            description: 'This is a custom field type.',
-          },
-        },
-        {
-          className: 'col-sm-3',
-          type: 'input',
-          key: 'zip',
-          templateOptions: {
-            type: 'number',
-            label: 'Zip',
-            max: 99999,
-            min: 0,
-            pattern: '\\d{5}',
-          },
-        },
-      ],
-    },
-    {
-      type: 'textarea',
-      key: 'otherInput',
-      templateOptions: {
-        label: 'Other Input',
-      },
-    },
-    {
-      type: 'checkbox',
-      key: 'otherToo',
-      templateOptions: {
-        label: 'Other Checkbox',
-      },
-      wrappers: ['div'],
-    },
-  ];
-
-
 
 // Advanced Layout
 formSol = new FormGroup({});
-modelSol = {};
+modelSol = {
+};
 fieldsSol: FormlyFieldConfig[] = [
   {
     fieldGroupClassName: 'row',
@@ -265,9 +196,9 @@ fieldsSol: FormlyFieldConfig[] = [
                   key: 'macroc',
                   templateOptions: {
                     label: 'Macro Célula',
-                    options:this.mesano,
-                    labelProp: 'ano',
-                    valueProp: 'ano',
+                    options:this.macrocelulas,
+                    labelProp: 'descricao',
+                    valueProp: 'descricao',
                     required: true,
 
                   },
@@ -277,9 +208,9 @@ fieldsSol: FormlyFieldConfig[] = [
                   key: 'celula',
                   templateOptions: {
                     label: 'Célula',
-                    options:this.mesano,
-                    labelProp: 'ano',
-                    valueProp: 'ano',
+                    options:this.celulas,
+                    labelProp: 'descricao',
+                    valueProp: 'descricao',
                     required: true,
 
                   },
@@ -290,13 +221,13 @@ fieldsSol: FormlyFieldConfig[] = [
   fieldGroup: [
                 {
                   className: 'col-sm-4',
-                  type: 'combobox',
+                  type: 'select',
                   key: 'atividade',
                   templateOptions: {
                     label: 'Atividade',
-                    options:this.mesano,
-                    labelProp: 'ano',
-                    valueProp: 'ano',
+                    options:this.atividades,
+                    labelProp: 'descricao',
+                    valueProp: 'descricao',
                     required: true,
 
                   },
@@ -307,7 +238,9 @@ fieldsSol: FormlyFieldConfig[] = [
                   templateOptions: {
                     label: 'Descrição',
                     required: true,
+                    rows:5
                   },
+
                 }
               ]
 },{
@@ -315,13 +248,27 @@ fieldsSol: FormlyFieldConfig[] = [
   fieldGroup: [
                 {
                   className: 'col-sm-4',
-                  type: 'input',
+                  type: 'select',
                   key: 'complexidade',
                   templateOptions: {
                     label: 'Complexidade',
+                    options:this.complexidadeList,
+                    labelProp: 'descricao',
+                    valueProp: 'descricao',
                     required: true,
+                    change: (field: FormlyFieldConfig)=>{
+                      console.log('alterando o valor da complexidade'+field.model.fatorp)
+                      field.model.fatorp=7;
+                      console.log('alterado o valor da complexidade'+field.model.fatorp)
+                  },
 
                   },
+                  expressionProperties: {
+                    'templateOptions.onChange': (field: FormlyFieldConfig) => {
+                      console.log('Selected value:', field.model.fatorp);
+                      // Add your custom behavior here
+                    },
+                  }
                 },{
                   className: 'col-sm-4',
                   type: 'input',
@@ -329,7 +276,20 @@ fieldsSol: FormlyFieldConfig[] = [
                   templateOptions: {
                     label: 'Fator de Ponderação',
                     required: true,
+                    change: (field: FormlyFieldConfig, $event)=>{
+                      console.log('alterando o fator p '+field.model.fatorp)
                   },
+
+                  },
+                  expressions:{
+
+                      'templateOptions.disabled': (field: FormlyFieldConfig) => {
+                        return !field.model.complexidade;
+                      },
+
+                  }
+
+
                 },{
                   className: 'col-sm-4',
                   type: 'input',
@@ -337,6 +297,7 @@ fieldsSol: FormlyFieldConfig[] = [
                   templateOptions: {
                     label: 'Esforço',
                     required: true,
+
                   },
                 }
               ]
@@ -370,13 +331,10 @@ fieldsSol: FormlyFieldConfig[] = [
                   },
                 }
               ]
-}
+},
 
 
 ]
-
-
-
 
   constructor(private toast: ToastrService, private dialog: MtxDialog) {}
   ngOnInit(): void {
@@ -384,25 +342,11 @@ fieldsSol: FormlyFieldConfig[] = [
   console.log(this.lista)
   }
 
-  submit() {
-    if (this.form.valid) {
-      console.log(this.model.email)
-      this.showToast(this.model);
-    }
-  }
-
-  submit2() {
-    if (this.form2.valid) {
-      this.showToast(this.model2);
-    }
-  }
 
   submit3() {
     if (this.formSol.valid) {
       this.showToast(this.modelSol);
       console.log(this.modelSol)
-      console.log(this.model)
-      console.log(this.model2)
       this.lista.push(this.modelSol)
       console.log(this.lista)
       this.lista = this.lista.splice(-1).concat(this.lista);
